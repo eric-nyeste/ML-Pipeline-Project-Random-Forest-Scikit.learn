@@ -65,9 +65,11 @@ The script creates the output directory and writes evaluation tables and plots t
 If you already have those two split files and want to use them without repartitioning the original data:
 python HW2_ML_Pipeline_Consolidated.py --data-dir ./data --output-dir ./results --use-existing-split
 Expected outputs include HW2_OOB_results.csv, HW2_CV_fold_results.csv, HW2_RF_Feature_Ranking.csv, HW2_Reduced_Feature_Pooled.csv, HW2_Runtime_Verification.csv, and HW2_RF_Top10_Features.png, along with additional summaries.
+
 Running the tests
 From the repository root:
 python -m unittest -v test_ml_pipeline.py
+
 The default suite tests dataset splitting, metric calculations, fold construction, missing-value checks, and a synthetic-data end-to-end run. Synthetic test data establish software behavior, not reproduction of the scientific findings.
 
 To additionally check the reported OOB result against the original CSV, set HW2_DATA_DIR to the folder containing that CSV.
@@ -78,10 +80,12 @@ python -m unittest -v test_ml_pipeline.py
 macOS / Linux:
 HW2_DATA_DIR=./data python -m unittest -v test_ml_pipeline.py
 The optional test checks the original dataset shape, class counts, and the reported three OOB errors in 869 training observations for the 100-tree, square-root model. It does not reproduce every result in the report. If HW2_DATA_DIR is unset, that test is skipped.
+
 Reproducibility status
 The consolidated script was assembled from the Python appendices of the course report with integration changes for portable paths, shared functions, command-line arguments, and noninteractive chart saving. It is not a byte-for-byte copy of the original separate scripts. A prior synthetic-data test run checked integration, but a full independent run against the original research CSV and confirmation of all published metrics remain necessary.
 
 For a rigorous reproduction, run the pipeline in a clean environment, retain its output files, and compare OOB, cross-validation, reduced-feature, and runtime results with the report. Record package versions and any discrepancies.
+
 Limitations and responsible interpretation
 - Limited biological sampling: The dataset comes from one post-mortem brain and does not establish population-level generalizability.
 - High dimensionality: 608 features relative to 871 original observations create a low sample-to-feature ratio.
@@ -89,8 +93,10 @@ Limitations and responsible interpretation
 - Performance uncertainty: High accuracy on this dataset does not guarantee reliability under distribution shift or on other donors.
 - Reduced-feature tradeoffs: Fewer genes can preserve much of the reported accuracy while changing the error profile, including false negatives.
 - Scope: This is an educational research experiment, not a validated diagnostic or clinical decision-making tool.
+
 Generative-AI-assisted development
 OpenAI ChatGPT was used as an instructional and computational collaborator for conceptual instruction, Python code generation, debugging, experimental-design consultation, statistical interpretation, and report review. The researcher retained responsibility for experimental choices, verification, interpretation, and the submitted conclusions. The research report provides additional detail on prompts, oversight, and the original scripts.
+
 References
 - Aevermann et al. (2018), source research discussed in the course report for the gene-expression data and NS-Forest context. Consult the PDF for the complete citation and original data provenance.
 - Pedregosa et al. (2011). Scikit-learn: Machine Learning in Python. Journal of Machine Learning Research, 12, 2825–2830. https://jmlr.org/papers/v12/pedregosa11a.html
